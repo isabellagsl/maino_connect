@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_29_174230) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_29_180109) do
   create_table "post_comments", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "user_id", null: false
@@ -19,6 +19,22 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_29_174230) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_post_comments_on_post_id"
     t.index ["user_id"], name: "index_post_comments_on_user_id"
+  end
+
+  create_table "post_taggings", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "post_tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_taggings_on_post_id"
+    t.index ["post_tag_id"], name: "index_post_taggings_on_post_tag_id"
+  end
+
+  create_table "post_tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_post_tags_on_name", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
@@ -52,6 +68,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_29_174230) do
 
   add_foreign_key "post_comments", "posts"
   add_foreign_key "post_comments", "users"
+  add_foreign_key "post_taggings", "post_tags"
+  add_foreign_key "post_taggings", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
 end
