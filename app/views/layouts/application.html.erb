@@ -24,8 +24,9 @@
 
   <body>
     <%= link_to "Home", root_path, {class: "nav-link"} %>
-<%= button_to "Log out", session_path, method: :delete if authenticated? %>
-          <%= link_to "Login", new_session_path unless authenticated? %>
+    <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+    <%= link_to "Login", new_session_path unless authenticated? %>
+    <%= link_to Current.user.first_name, profile_path if authenticated? %>      
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,15 @@
+<h1>User Profile</h1>
+
+<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+
+<%= @user.first_name %>
+
+<%= @user.last_name %>
+
+<%= @user.email_address %>
+
+<%= link_to "Edit Profile", edit_profile_path %>
+
+<%= link_to "Back", posts_path %>  
+
