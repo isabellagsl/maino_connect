@@ -9,3 +9,31 @@
     <%= link_to "Edit", edit_post_path(@post) %>
     <%= button_to "Delete", @post, method: :delete %>
 <% end %>
+
+<% @post.post_comments.each do |post_comment| %>
+    <div>
+
+        <% if post_comment.user.nil? %>
+                <span>Anonymous</span>
+            <% else %>
+                <span> <%= post_comment.user.first_name %> </span>
+        <% end %>
+
+        <div>
+            <%= post_comment.content %>
+        </div>
+    </div>
+<% end %>
+
+<%= form_with model: PostComment.new, url: post_comments_path do |form| %>
+    <%= form.hidden_field :post_id, value: @post.id %>
+
+    <div>
+        <%= form.label :content %>
+        <%= form.textarea :content %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>

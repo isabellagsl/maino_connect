@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :post_comments, only: %i[create update destroy]
   resources :posts
   resource :session
   resources :passwords, param: :token
