@@ -4,6 +4,9 @@
 <%= link_to "New post", new_post_path %>
 
 <h1>Post</h1>
+<div class="alert alert-primary" role="alert">
+  This is a primary alert—check it out!
+</div>
 
 <div id="post">
   <% @posts.each do |post|%>
