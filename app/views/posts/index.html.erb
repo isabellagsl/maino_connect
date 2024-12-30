@@ -1,7 +1,9 @@
 <h1>Posts#index</h1>
 <p>Find me in app/views/posts/index.html.erb</p>
 
-<%= link_to "New post", new_post_path %>
+<% if authenticated? %>
+    <%= link_to "New post", new_post_path %>
+<% end %>
 
 <h1>Post</h1>
 <div class="alert alert-primary" role="alert">
