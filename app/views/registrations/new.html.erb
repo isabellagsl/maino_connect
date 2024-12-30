@@ -1,0 +1,10 @@
+<%= form_with model: @user, url: registration_url do |form| %>
+    <%= form.text_field :first_name, required: true, autofocus: true, autocomplete: "firstname", placeholder: "Enter your first name", value: params[:first_name] %>
+    <%= form.text_field :last_name, required: true, autofocus: true, autocomplete: "lastname", placeholder: "Enter your last name", value: params[:last_name] %>
+    <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "email", placeholder: "Enter your email address", value: params[:email_address] %>
+    <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %>
+    <%= form.password_field :password_confirmation, required: true, autocomplete: "current-password", placeholder: "Confirm your password", maxlength: 72 %>
+    <%= form.submit "Sign up" %>
+<% end %>
+
+<%= link_to "Forgot password?", new_password_path %>
