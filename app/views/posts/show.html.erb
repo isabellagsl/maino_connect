@@ -2,3 +2,10 @@
 <p>Find me in app/views/posts/show.html.erb</p>
 <div><%= @post.title %></div>
 <div><%= @post.content %></div>
+
+<%= link_to "Back", posts_path %>
+
+<% if authenticated? and Current.user.id == @post.user.id %>
+    <%= link_to "Edit", edit_post_path(@post) %>
+    <%= button_to "Delete", @post, method: :delete %>
+<% end %>

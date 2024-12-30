@@ -11,7 +11,7 @@
 <div id="post">
   <% @posts.each do |post|%>
     <div>
-      <%= post.title %>
+     <%= link_to post.title, post %>
     </div>
   <% end %>
 </div>
