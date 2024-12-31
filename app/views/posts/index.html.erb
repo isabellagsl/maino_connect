@@ -16,4 +16,16 @@
      <%= link_to post.title, post %>
     </div>
   <% end %>
+  
 </div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <% if params[:page].to_i > 1 %>
+        <li class="page-item"><%= link_to "Previous", root_path(page: params[:page].to_i - 1), {class: "page-link"} %></li>
+    <% end %>
+    <% if @posts.size == @per_page %>
+        <li class="page-item"><%= link_to "Next", root_path(page: (params[:page] || 1).to_i + 1), {class: "page-link"} %></li>
+    <% end %>
+  </ul>
+</nav>

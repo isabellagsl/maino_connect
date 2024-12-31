@@ -3,7 +3,10 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
-    @posts = Post.all
+    page = params[:page].to_i || 1
+    @per_page = 3
+    offset = (page - 1) * @per_page
+    @posts = Post.offset(offset).limit(@per_page).order(created_at: :desc)
   end
 
 
