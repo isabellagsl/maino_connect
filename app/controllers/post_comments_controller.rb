@@ -6,7 +6,7 @@ class PostCommentsController < ApplicationController
     current_user = authenticated? ? Current.user : nil
     @post_comment = PostComment.new(post_comment_params.merge(user: current_user))
     if @post_comment.save
-      redirect_to @post_comment.post, notice: "Post comment was successfully created."
+      redirect_to @post_comment.post, notice: "Comentário criado com sucesso."
     else
       render :new, status: :unprocessable_entity
     end
@@ -14,7 +14,7 @@ class PostCommentsController < ApplicationController
 
   def update
     if @post_comment.update(post_comment_params[:content])
-      redirect_to @post_comment.post, notice: "Post comment was successfully updated."
+      redirect_to @post_comment.post, notice: "Comentário atualizado com sucesso."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -22,7 +22,7 @@ class PostCommentsController < ApplicationController
 
   def destroy
     @post_comment.destroy
-    redirect_to @post_comment.post, notice: "Post comment was successfully destroyed."
+    redirect_to @post_comment.post, notice: "Comentário removido com sucesso."
   end
 
   private

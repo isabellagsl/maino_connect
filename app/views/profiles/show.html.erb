@@ -1,15 +1,16 @@
-<h1>User Profile</h1>
+<h1>Perfil</h1>
 
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<div class="mb-3">
+    Primerio nome: <%= @user.first_name %>
+</div>
+<div class="mb-3"> 
+    Último nome: <%= @user.last_name %>
+</div>
+<div class="mb-3"> 
+    Email: <%= @user.email_address %>
+</div>
 
-<%= @user.first_name %>
+<%= link_to "Editar Perfil", edit_profile_path, {class: "btn btn-primary"} %>
 
-<%= @user.last_name %>
-
-<%= @user.email_address %>
-
-<%= link_to "Edit Profile", edit_profile_path %>
-
-<%= link_to "Back", posts_path %>  
+<%= link_to "Voltar", posts_path, {class: "btn btn-secondary"} %>  
 

@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     if @post.save
       post_tags = get_post_tags_from_params
       add_post_tags(@post, post_tags)
-      redirect_to @post, notice: "Post was successfully created!"
+      redirect_to @post, notice: "Postagem criada com sucesso."
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
       removed_tags = current_tags - post_tags
       add_post_tags(@post, new_tags)
       remove_post_tags(@post, removed_tags)
-      redirect_to @post, notice: "Post was successfully updated!"
+      redirect_to @post, notice: "Postagem atualizada com sucesso."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: "Post was successfully destroyed!"
+    redirect_to posts_url, notice: "Postagem removida com sucesso."
   end
 
   private
