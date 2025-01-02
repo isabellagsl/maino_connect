@@ -22,6 +22,8 @@ gem "bootstrap", "~> 5.3.3"
 
 gem "dotenv-rails", groups: [ :development, :test ]
 
+gem "pg", "~> 1.5", ">= 1.5.9"
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 
