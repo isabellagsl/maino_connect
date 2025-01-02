@@ -3,10 +3,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
-    page = (params[:page] || 1).to_i
+    post_title = query_params[:post_title]
+    post_tags = query_params[:post_tags]
+    page = (query_params[:page] || 1).to_i
     @per_page = 3
     offset = (page - 1) * @per_page
-    @posts = Post.offset(offset).limit(@per_page).order(created_at: :desc)
+    @posts = Post.filter_by_title(post_title).filter_by_tags(post_tags).offset(offset).limit(@per_page).order(created_at: :desc)
   end
 
 
@@ -54,6 +56,10 @@ class PostsController < ApplicationController
   private
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def query_params
+      params.permit(:page, :post_title, :post_tags)
     end
 
     def post_params

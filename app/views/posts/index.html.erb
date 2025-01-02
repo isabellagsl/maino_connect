@@ -10,6 +10,15 @@
   This is a primary alert—check it out!
 </div>
 
+<%= form_with url: posts_path, method: :get do |form| %>
+  <%= form.text_field :post_title, {class: "form-control"} %>
+  <div id="tags-input-wrapper">
+    <%= form.hidden_field :post_tags, {id: "tags-value-input"} %> 
+  </div>
+  <%= form.submit "Search", {class: "btn btn-primary"} %>
+<% end %>
+
+
 <div id="post">
   <% @posts.each do |post|%>
     <div>
@@ -29,3 +38,19 @@
     <% end %>
   </ul>
 </nav>
+
+<script src="https://cdn.jsdelivr.net/gh/JoaoG250/bootstrap-tags-input@main/dist/bootstrap-tags-input.umd.js"></script>
+
+<script>
+    const inputController = new BootstrapInputController(document.getElementById("tags-value-input"));
+    const bootstrapTagsInput = new BootstrapTagsInput({
+        onTagAdded: (tag) => {
+            inputController.addTag(tag);
+        },
+        onTagRemoved: (tag) => {
+            inputController.removeTag(tag);
+        },
+        initialTags: inputController.getTags(),
+    });
+    document.getElementById("tags-input-wrapper").appendChild(bootstrapTagsInput.rootElement);
+</script>
