@@ -1,4 +1,4 @@
 <h1>Cadastro</h1>
 
-<%= render "form", user: @user, url: registration_url, submit_text: "Cadastrar" %>
+<%= render "form", user: @user, url: registration_url, fields_required: true, submit_text: "Cadastrar" %>
 <%= link_to "Cancelar", root_path, {class: "btn btn-secondary mt-2"} %>

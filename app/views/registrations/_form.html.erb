@@ -1,23 +1,23 @@
 <%= form_with model: user, url: url do |form| %>
     <div class="mb-3">
         <%= form.label "Primeiro nome", {class: "form-label"} %>
-        <%= form.text_field :first_name, required: true, autofocus: true, autocomplete: "firstname", class: "form-control" %>
+        <%= form.text_field :first_name, required: fields_required, autofocus: true, autocomplete: "firstname", class: "form-control" %>
     </div>
     <div class="mb-3">
         <%= form.label "Último nome", {class: "form-label"} %>
-        <%= form.text_field :last_name, required: true, autofocus: true, autocomplete: "lastname", class: "form-control" %>
+        <%= form.text_field :last_name, required: fields_required, autofocus: true, autocomplete: "lastname", class: "form-control" %>
     </div>
     <div class="mb-3">
         <%= form.label "Email", {class: "form-label"} %>
-        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "email", class: "form-control" %>
+        <%= form.email_field :email_address, required: fields_required, autofocus: true, autocomplete: "email", class: "form-control" %>
     </div>
     <div class="mb-3">
         <%= form.label "Senha", {class: "form-label"} %>
-        <%= form.password_field :password, required: true, autocomplete: "current-password", maxlength: 72, class: "form-control" %>
+        <%= form.password_field :password, required: fields_required, autocomplete: "current-password", maxlength: 72, class: "form-control" %>
     </div>
     <div class="mb-3">
         <%= form.label "Confirmar senha", {class: "form-label"} %>
-        <%= form.password_field :password_confirmation, required: true, autocomplete: "current-password", maxlength: 72, class: "form-control" %>
+        <%= form.password_field :password_confirmation, required: fields_required, autocomplete: "current-password", maxlength: 72, class: "form-control" %>
     </div>
     <div>
         <%= form.submit submit_text, {class: "btn btn-primary"} %>

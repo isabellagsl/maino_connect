@@ -1,4 +1,4 @@
 <h1>Editar perfil</h1>
 
-<%= render "registrations/form", user: @user, url: profile_path, submit_text: "Editar perfil" %>
+<%= render "registrations/form", user: @user, url: profile_path, fields_required: false, submit_text: "Editar perfil" %>
 <%= link_to "Cancelar", root_path, {class: "btn btn-secondary mt-2"} %>
