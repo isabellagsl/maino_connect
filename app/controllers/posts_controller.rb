@@ -35,6 +35,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    return unless is_post_owner?
     if @post.update(post_params)
       post_tags = get_post_tags_from_params
       current_tags = @post.post_tags.map(&:name)
@@ -49,6 +50,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    return unless is_post_owner?
     @post.destroy
     redirect_to posts_url, notice: "Postagem removida com sucesso."
   end
@@ -56,6 +58,10 @@ class PostsController < ApplicationController
   private
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def is_post_owner?
+      @post.user == Current.user
     end
 
     def query_params
