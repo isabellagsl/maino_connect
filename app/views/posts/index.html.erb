@@ -23,7 +23,7 @@
 <div class="row">
   <% @posts.each do |post|%>
     <div class="col">
-      <div class="card">
+      <div class="card post-card">
         <div class="card-body">
           <h5 class="card-title"><%= post.title %></h5>
           <p class="card-text"><%= post.content %></p>
@@ -34,17 +34,18 @@
   <% end %>
 </div>
 
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <% if params[:page].to_i > 1 %>
-        <li class="page-item"><%= link_to "Previous", root_path(page: params[:page].to_i - 1), {class: "page-link"} %></li>
-    <% end %>
-    <% if @posts.size == @per_page %>
-        <li class="page-item"><%= link_to "Next", root_path(page: (params[:page] || 1).to_i + 1), {class: "page-link"} %></li>
-    <% end %>
-  </ul>
-</nav>
+<div class="d-flex justify-content-center mt-3">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <% if params[:page].to_i > 1 %>
+          <li class="page-item"><%= link_to "Anterior", root_path(page: params[:page].to_i - 1), {class: "page-link"} %></li>
+      <% end %>
+      <% if @posts.size == @per_page %>
+          <li class="page-item"><%= link_to "Próximo", root_path(page: (params[:page] || 1).to_i + 1), {class: "page-link"} %></li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
 
 <script src="https://cdn.jsdelivr.net/gh/JoaoG250/bootstrap-tags-input@main/dist/bootstrap-tags-input.umd.js"></script>
 

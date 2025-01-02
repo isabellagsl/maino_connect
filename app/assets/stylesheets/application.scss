@@ -1,2 +1,16 @@
 // Sassy
 @import "bootstrap";
+
+.post-card {
+    height: 300px;
+    
+    .card-text {
+        height: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        line-clamp: 7;
+        -webkit-line-clamp: 7;
+        -webkit-box-orient: vertical;
+    }
+}
