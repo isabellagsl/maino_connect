@@ -3,6 +3,11 @@
 <div><%= @post.title %></div>
 <div><%= @post.content %></div>
 
+<% @post.post_tags.each do |tag| %>
+    <span><%= tag.name %></span>
+<% end %>
+
+
 <%= link_to "Back", posts_path %>
 
 <% if authenticated? and Current.user.id == @post.user.id %>

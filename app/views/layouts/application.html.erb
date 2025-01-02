@@ -16,6 +16,7 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/JoaoG250/bootstrap-tags-input@main/dist/bootstrap-tags-input.css">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -26,6 +27,7 @@
     <%= link_to "Home", root_path, {class: "nav-link"} %>
     <%= button_to "Log out", session_path, method: :delete if authenticated? %>
     <%= link_to "Login", new_session_path unless authenticated? %>
+    <%= link_to "Register", new_registration_path unless authenticated? %>
     <%= link_to Current.user.first_name, profile_path if authenticated? %>      
     <%= yield %>
   </body>
