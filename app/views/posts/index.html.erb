@@ -1,32 +1,39 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>Postagens</h1>
 
 <% if authenticated? %>
-    <%= link_to "New post", new_post_path %>
+    <%= link_to "Nova Postagem", new_post_path, {class: "btn btn-primary mb-4", role: "button"} %>
 <% end %>
-
-<h1>Post</h1>
-<div class="alert alert-primary" role="alert">
-  This is a primary alert—check it out!
-</div>
 
 <%= form_with url: posts_path, method: :get do |form| %>
-  <%= form.text_field :post_title, {class: "form-control"} %>
-  <div id="tags-input-wrapper">
-    <%= form.hidden_field :post_tags, {id: "tags-value-input"} %> 
+  <div class="row mb-4">
+    <div class="col-5">
+      <%= form.text_field :post_title, {class: "form-control", placeholder: "Título"} %>
+    </div>
+    <div class="col-5">
+      <div id="tags-input-wrapper">
+        <%= form.hidden_field :post_tags, {id: "tags-value-input"} %> 
+      </div>
+    </div>
+    <div class="col-2">
+      <%= form.submit "Filtrar", {class: "btn btn-primary w-100"} %>
+    </div>
   </div>
-  <%= form.submit "Search", {class: "btn btn-primary"} %>
 <% end %>
 
-
-<div id="post">
+<div class="row">
   <% @posts.each do |post|%>
-    <div>
-     <%= link_to post.title, post %>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <p class="card-text"><%= post.content %></p>
+          <%= link_to "Visualizar", post, {class: "card-link"} %>
+        </div>
+      </div>
     </div>
   <% end %>
-  
 </div>
+
 
 <nav aria-label="Page navigation example">
   <ul class="pagination">

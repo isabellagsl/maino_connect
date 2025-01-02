@@ -1,44 +1,62 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
-<div><%= @post.title %></div>
-<div><%= @post.content %></div>
+<h1><%= @post.title %></h1>
 
-<% @post.post_tags.each do |tag| %>
-    <span><%= tag.name %></span>
-<% end %>
+<div class="row mb-4">
+    <% if authenticated? and Current.user.id == @post.user.id %>
+    <div class="col-2">
+        <%= link_to "Editar Postagem", edit_post_path(@post), {class: "btn btn-success w-100"} %>
+    </div>
+    <div class="col-2">
+        <%= button_to "Deletar Postagem", @post, {method: :delete, class: "btn btn-danger w-100"} %>
+    </div>
+    <% end %>
+</div>
 
+<div class="row mb-4">
+    <div><%= @post.content %></div>
+</div>
 
-<%= link_to "Back", posts_path %>
-
-<% if authenticated? and Current.user.id == @post.user.id %>
-    <%= link_to "Edit", edit_post_path(@post) %>
-    <%= button_to "Delete", @post, method: :delete %>
-<% end %>
-
-<% @post.post_comments.each do |post_comment| %>
-    <div>
-
-        <% if post_comment.user.nil? %>
-                <span>Anonymous</span>
-            <% else %>
-                <span> <%= post_comment.user.first_name %> </span>
+<div class="row mb-4">
+    <h5>Tags</h5>
+    <div class="d-flex">
+        <% @post.post_tags.each do |tag| %>
+            <span class="badge text-bg-secondary me-2"><%= tag.name %></span>
         <% end %>
+    </div>
+</div>
 
-        <div>
-            <%= post_comment.content %>
+<div class="row mb-4">
+    <h5>Comentários</h5>
+
+    <div class="row">
+        <%= form_with model: PostComment.new, url: post_comments_path do |form| %>
+            <%= form.hidden_field :post_id, value: @post.id %>
+
+            <div class="mb-3">
+                <%= form.textarea :content, {class: "form-control", placeholder: "Digite aqui seu comentário"} %>
+            </div>
+
+            <div class="mb-3">
+                <%= form.submit "Criar comentário", {class: "btn btn-primary"} %>
+            </div>
+        <% end %>
+    </div>
+
+    <% @post.post_comments.each do |post_comment| %>
+        <div class="col-12 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <% if post_comment.user.nil? %>
+                            Convidado
+                            <% else %>
+                            <%= post_comment.user.first_name %>
+                        <% end %>
+                    </h5>
+                    <p class="card-text"><%= post_comment.content %></p>
+                </div>
+            </div>
         </div>
-    </div>
-<% end %>
+    <% end %>
+</div>
 
-<%= form_with model: PostComment.new, url: post_comments_path do |form| %>
-    <%= form.hidden_field :post_id, value: @post.id %>
-
-    <div>
-        <%= form.label :content %>
-        <%= form.textarea :content %>
-    </div>
-
-    <div>
-        <%= form.submit %>
-    </div>
-<% end %>
+<%= link_to "Voltar", posts_path, {class: "btn btn-primary"} %>

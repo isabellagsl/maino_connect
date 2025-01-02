@@ -1,6 +1,5 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1>Editar Postagem</h1>
 
-<%= render "form", post: @post %>
-<%= link_to "Back", posts_path %>
+<%= render "form", post: @post, submit_text: "Editar Postagem" %>
+<%= link_to "Cancelar", posts_path, {class: "btn btn-secondary mt-2"} %>
 

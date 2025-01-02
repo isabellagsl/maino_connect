@@ -1,20 +1,23 @@
 <%= form_with model: post do |form| %>
-    <div>
-        <%= form.label :title %>
-        <%= form.text_field :title %>
+    <div class="mb-3">
+        <%= form.label "Título", {class: "form-label"} %>
+        <%= form.text_field :title, {class: "form-control"} %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Conteúdo", {class: "form-label"} %>
+        <%= form.textarea :content, {class: "form-control"} %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label "Tags", {class: "form-label"} %>
+        <div id="tags-input-wrapper">
+            <%= form.hidden_field :post_tags, {id: "tags-value-input", value: post.post_tags.map(&:name).join(",")} %>
+        </div>
     </div>
 
     <div>
-        <%= form.label :content %>
-        <%= form.textarea :content %>
-    </div>
-
-    <div id="tags-input-wrapper">
-        <%= form.hidden_field :post_tags, {id: "tags-value-input", value: post.post_tags.map(&:name).join(",")} %>
-    </div>
-
-    <div>
-        <%= form.submit %>
+        <%= form.submit submit_text, {class: "btn btn-primary"} %>
     </div>
 
     <script src="https://cdn.jsdelivr.net/gh/JoaoG250/bootstrap-tags-input@main/dist/bootstrap-tags-input.umd.js"></script>

@@ -24,11 +24,11 @@
   </head>
 
   <body>
-    <%= link_to "Home", root_path, {class: "nav-link"} %>
-    <%= button_to "Log out", session_path, method: :delete if authenticated? %>
-    <%= link_to "Login", new_session_path unless authenticated? %>
-    <%= link_to "Register", new_registration_path unless authenticated? %>
-    <%= link_to Current.user.first_name, profile_path if authenticated? %>      
-    <%= yield %>
+    <%= render "navbar" %>
+    <div class="container">
+      <div class="my-4">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
