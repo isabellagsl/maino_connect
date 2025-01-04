@@ -5,16 +5,16 @@
 <% end %>
 
 <%= form_with url: posts_path, method: :get do |form| %>
-  <div class="row mb-4">
-    <div class="col-5">
+  <div class="row mb-2">
+    <div class="col-12 col-md-5 mb-2">
       <%= form.text_field :post_title, {class: "form-control", placeholder: "Título"} %>
     </div>
-    <div class="col-5">
+    <div class="col-12 col-md-5 mb-2">
       <div id="tags-input-wrapper">
         <%= form.hidden_field :post_tags, {id: "tags-value-input"} %> 
       </div>
     </div>
-    <div class="col-2">
+    <div class="col-3 col-md-2 mb-2">
       <%= form.submit "Filtrar", {class: "btn btn-primary w-100"} %>
     </div>
   </div>
@@ -22,7 +22,7 @@
 
 <div class="row">
   <% @posts.each do |post|%>
-    <div class="col">
+    <div class="col-12 col-md-6 col-lg-4 mb-2">
       <div class="card post-card">
         <div class="card-body">
           <h5 class="card-title"><%= post.title %></h5>
