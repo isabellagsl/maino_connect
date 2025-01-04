@@ -8,13 +8,10 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  host: <%= ENV["DATABASE_HOST"] %>
-  username: <%= ENV["DATABASE_USER"] %>
-  password: <%= ENV["DATABASE_PASSWORD"] %>
 
 development:
   <<: *default
-  database: <%= ENV["DATABASE_NAME"] %>
+  url: <%= ENV["DATABASE_URL"] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -30,17 +27,17 @@ test:
 production:
   primary:
     <<: *default
-    database: <%= ENV["DATABASE_NAME"] %>
+    url: <%= ENV["DATABASE_URL"] %>
   cache:
     <<: *default
-    database: <%= ENV["DATABASE_NAME"] + "_cache" %>
+    url: <%= ENV["DATABASE_URL"] + "_cache" %>
     migrations_paths: db/cache_migrate
   queue:
     <<: *default
-    database: <%= ENV["DATABASE_NAME"] + "_queue" %>
+    url: <%= ENV["DATABASE_URL"] + "_queue" %>
     migrations_paths: db/queue_migrate
   cable:
     <<: *default
-    database: <%= ENV["DATABASE_NAME"] + "_cable" %>
+    url: <%= ENV["DATABASE_URL"] + "_cable" %>
     migrations_paths: db/cable_migrate
  
