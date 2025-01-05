@@ -50,8 +50,8 @@
 <script src="https://cdn.jsdelivr.net/gh/JoaoG250/bootstrap-tags-input@main/dist/bootstrap-tags-input.umd.js"></script>
 
 <script>
-    const inputController = new BootstrapInputController(document.getElementById("tags-value-input"));
-    const bootstrapTagsInput = new BootstrapTagsInput({
+    var inputController = new BootstrapInputController(document.getElementById("tags-value-input"));
+    var bootstrapTagsInput = new BootstrapTagsInput({
         onTagAdded: (tag) => {
             inputController.addTag(tag);
         },
